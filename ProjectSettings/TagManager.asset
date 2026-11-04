@@ -4,10 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Gallo con tenis
-  - Perico verde
-  - Perico Rojo
-  - Perico Azul
+  - GalloConTenis
+  - Perico
   layers:
   - Default
   - TransparentFX
@@ -47,3 +45,4 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
+  m_MigratedRenderPipelines: []

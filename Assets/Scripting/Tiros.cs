@@ -7,7 +7,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameObject avePrefab;
+    public GameObject avePrefab2;
+    public GameObject avePrefab3;
     public Transform puntoInicio;
+    public Transform puntoInicio2;
+    public Transform puntoInicio3;
 
     public TextMeshProUGUI textoPuntos;
     public TextMeshProUGUI textoTiros;
@@ -26,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        enemigosRestantes = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        enemigosRestantes = GameObject.FindGameObjectsWithTag("GalloConTenis").Length;
 
         panelGanaste.SetActive(false);
         panelPerdiste.SetActive(false);
@@ -47,23 +51,30 @@ public class GameManager : MonoBehaviour
         puntos += puntosGanados;
         enemigosRestantes--;
         ActualizarUI();
-    }
-
-    void SiguienteTurno()
-    {
-        if (enemigosRestantes <= 0)
+        Debug.Log("Enemigos restantes: " + enemigosRestantes);
+        
+        if (enemigosRestantes <= 0 && !terminado)
         {
+            terminado = true;
+            CancelInvoke("SiguienteTurno");
             panelGanaste.SetActive(true);
         }
-        else if (tiros > 0)
+    }
+    void SiguienteTurno()
+    {
+        if (terminado) return;
+        if (tiros > 0)
         {
             Instantiate(avePrefab, puntoInicio.position, Quaternion.identity);
         }
         else
         {
+            terminado = true;
             panelPerdiste.SetActive(true);
         }
     }
+
+    private bool terminado = false;
 
     void ActualizarUI()
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class GalloConTenis : MonoBehaviour
 {
     public int puntos = 100;
     public float velocidadMinima = 6f;  
@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
         if (muerto) return;
 
         
-        if (col.gameObject.CompareTag("Bird") || col.relativeVelocity.magnitude > velocidadMinima)
+        if (col.gameObject.CompareTag("Perico") || col.relativeVelocity.magnitude > velocidadMinima)
         {
             Morir();
         }
